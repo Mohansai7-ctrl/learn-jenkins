@@ -19,4 +19,18 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            echo "This condition runs always irrespective of above pipeline success or not"
+        }
+
+        success {
+            echo "This condition runs only above pipeline success"
+        }
+
+        failure {
+            echo "This condition runs only above pipeline failure"
+        }
+    }
 }
