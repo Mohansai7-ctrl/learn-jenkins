@@ -29,8 +29,9 @@ pipeline {
     post {
         always {
             echo "This condition runs always irrespective of above pipeline success or not"
+            deleteDir()    //It will delete the created directory after or once the pipeline is triggered or execured successfully
         }
-        deleteDir()
+        
 
         success {
             echo "This condition runs only above pipeline success"
