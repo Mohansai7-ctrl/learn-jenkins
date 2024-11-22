@@ -1,5 +1,11 @@
+// Make sure to install plugins from Manage Jenkins are 1) pipeline stage view and 2)pipeline utility steps
+
 pipeline {
-    agent any
+
+    agent {
+        label 'AGENT-1'   //So that you schedule the build from jenkins ui which is on Master, but as agent is provided it runs in the AGEN-1
+    }
+
     stages {
         stage("Build") {
             steps {
