@@ -6,6 +6,12 @@ pipeline {
         label 'AGENT-1'   //So that you schedule the build from jenkins ui which is on Master, but as agent is provided it runs in the AGEN-1
     }
 
+    options {
+        disableConcurrentBuilds() //It will disable to allow concurrent builds means multiple builds to run at same time
+        retry(1)  //If build got failed then only it will retry for 1 more time
+        timeout(time: '10', unit: 'SECONDS')  //it Will wait for 10 seconds, within that if build didnt get run then it will throw timeout error
+    }
+
     stages {
         stage("Build") {
             steps {
