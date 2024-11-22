@@ -24,6 +24,7 @@ pipeline {
         always {
             echo "This condition runs always irrespective of above pipeline success or not"
         }
+        deleteDir()
 
         success {
             echo "This condition runs only above pipeline success"
