@@ -12,24 +12,43 @@ pipeline {
         timeout(time: 10, unit: 'SECONDS')  //it Will wait for 10 seconds, within that if build didnt get run then it will throw timeout error
     }
 
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Mohan', description: 'To whom should I say hell to?')
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Please Enter the description about you')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Please select anyone')
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Please enter the password')
+    }
+
     stages {
         stage("Build") {
             steps {
                 echo "This is from Build"
-                sh 'sleep 10'
+                //sh 'sleep 10' //after this stage, will wait for 10 seconds and then go to next stage
             }
         }
 
         stage("Test") {
             steps {
                 echo "This is from Test"
+                
             }
         }
 
         stage("Deploy") {
             steps {
                 echo "This is from Deploy"
-                error 'pipeline failed'
+                //error 'pipeline failed'  //if error is included, then it will show as error only though it was true
+            }
+        }
+
+        stage("Print Params") {
+            steps {
+                echo "Name is: ${params.PERSON}"
+                echo "Biography is: ${params.BIOGRAPHY}"
+                echo "Toggle is: ${params.TOGGLE}"
+                echo "choice is: ${params.CHOICE}"
+                echo "password is: ${PASSWORD}"
             }
         }
     }
