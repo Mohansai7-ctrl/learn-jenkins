@@ -16,6 +16,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "This is from Build"
+                sh 'sleep 10'
             }
         }
 
@@ -28,6 +29,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "This is from Deploy"
+                error 'pipeline failed'
             }
         }
     }
