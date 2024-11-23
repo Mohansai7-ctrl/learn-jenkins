@@ -9,7 +9,7 @@ pipeline {
     options {
         disableConcurrentBuilds() //It will disable to allow concurrent builds means multiple builds to run at same time
         retry(1)  //If build got failed then only it will retry for 1 more time
-        timeout(time: 10, unit: 'MINUTES')  //it Will wait for 10 seconds, within that if build didnt get run then it will throw timeout error
+        timeout(time: 10, unit: 'MINUTES')  //it Will wait for 10 seconds, within that if build didnt get run then it will throw timeout error, these retry, timout can also be used within stage as these are stage options as well.
     }
 
     parameters {
