@@ -30,7 +30,7 @@ pipeline {
 
         stage("Test") {
             steps {
-                echo "This is from Test"
+                echo "This is from Test" 
                 
             }
         }
