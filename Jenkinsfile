@@ -58,8 +58,12 @@ pipeline {
                 ok "Yes, we can continue!"
                 submitter "alice,bob"
                 parameters {
-                    string(name: 'PERSON', defaultValue 'Mr.Mohan', description 'to whom should I say hell to?')
+                    string(name: 'PERSON', defaultValue: 'Mr.Mohan', description: 'to whom should I say hell to?')
                 }
+            }
+
+            steps {
+                echo "Hi, This is from input Approval stage"
             }
         }
     }
