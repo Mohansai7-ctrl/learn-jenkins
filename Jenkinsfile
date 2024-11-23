@@ -21,6 +21,10 @@ pipeline {
         booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run the tests?')
     }
 
+    environment {
+        DEBUG = 'true'
+    }
+
     stages {
         stage("Build") {
             steps {
@@ -37,6 +41,12 @@ pipeline {
         }
 
         stage("Deploy") {
+
+            when {
+                expression { env.GIT_BRANCH = "origin/main" }
+                // expression { env.GIT_BRANCH != "origin/main" }
+            }
+
             steps {
                 echo "This is from Deploy"
                 //error 'pipeline failed'  //if error is included, then it will show as error only though it was true
@@ -44,8 +54,9 @@ pipeline {
         }
 
         stage("Print Params") {
+            
             steps {
-                echo "Name is: ${params.PERSON}"
+                echo "Name is: ${params.PERSON}"  //It will print the respective defaultValue and prmopt for choices and description
                 echo "Biography is: ${params.BIOGRAPHY}"
                 echo "Toggle is: ${params.TOGGLE}"
                 echo "choice is: ${params.CHOICE}"
@@ -69,6 +80,7 @@ pipeline {
         }
 
         stage("Run Tests to use When") {
+
             when {
                 expression { params.RUN_TESTS }
 
