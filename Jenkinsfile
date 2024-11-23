@@ -51,6 +51,17 @@ pipeline {
                 echo "password is: ${PASSWORD}"
             }
         }
+
+        stage("Approval") {
+            input {
+                message "Should we continue?"
+                ok "Yes, we can continue!"
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue 'Mr.Mohan', description 'to whom should I say hell to?')
+                }
+            }
+        }
     }
 
     post {
